@@ -1,0 +1,7 @@
+<div class="bg-white p-4 rounded-lg shadow">
+  <div class="text-gray-600"><%= account.currency %> Balance</div>
+  <div class="text-2xl font-bold">
+    <%= number_to_currency(account.balance, unit: currency_symbol(account.currency)) %>
+  </div>
+</div>
+

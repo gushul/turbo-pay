@@ -1,0 +1,55 @@
+<%= turbo_frame_tag "new_transaction" do %>
+  <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-xl font-bold">New Transfer</h2>
+      <%= link_to "×",
+                  transactions_path,
+                  class: "text-gray-400 hover:text-gray-600 text-2xl" %>
+    </div>
+
+    <%= form_with model: @transaction,
+                  data: { controller: "transaction-form",
+                         action: "transaction-form#validate" } do |f| %>
+      
+      <div class="space-y-4">
+        <div>
+          <%= f.label :sender_account_id, "From Account" %>
+          <%= f.select :sender_account_id,
+                      current_user.accounts.map { |a| ["#{a.currency} (#{number_to_currency(a.balance)})", a.id] },
+                      {},
+                      class: "w-full rounded border-gray-300",
+                      data: { action: "transaction-form#updateAvailableAmount" } %>
+        </div>
+
+        <div>
+          <%= f.label :recipient_account_id, "To" %>
+          <%= f.select :recipient_account_id,
+                      User.where.not(id: current_user.id).map { |u| [u.email, u.id] },
+                      {},
+                      class: "w-full rounded border-gray-300" %>
+        </div>
+
+        <div>
+          <%= f.label :amount %>
+          <%= f.number_field :amount,
+                           step: "0.01",
+                           class: "w-full rounded border-gray-300",
+                           data: { action: "transaction-form#validateAmount" } %>
+          <div data-transaction-form-target="amountError" class="text-red-500 text-sm hidden"></div>
+        </div>
+
+        <div>
+          <%= f.label :scheduled_for, "Schedule for (optional)" %>
+          <%= f.datetime_local_field :scheduled_for,
+                                   min: Time.current,
+                                   class: "w-full rounded border-gray-300" %>
+        </div>
+
+        <%= f.submit "Create Transfer",
+                    class: "w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4",
+                    data: { transaction_form_target: "submit" } %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+

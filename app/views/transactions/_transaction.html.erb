@@ -1,0 +1,36 @@
+<%= turbo_frame_tag dom_id(transaction) do %>
+  <div class="p-4 hover:bg-gray-50 transition-colors duration-200">
+    <div class="flex justify-between items-start">
+      <div>
+        <div class="flex items-center space-x-2">
+          <span class="text-lg font-medium">
+            <%= number_to_currency(transaction.amount, unit: currency_symbol(transaction.currency)) %>
+          </span>
+          <span class="<%= transaction_status_class(transaction) %> px-2 py-1 rounded text-sm">
+            <%= transaction.status.capitalize %>
+          </span>
+        </div>
+        
+        <div class="text-sm text-gray-500 mt-1">
+          From: <%= transaction.sender_account.user.email %><br>
+          To: <%= transaction.recipient_account.user.email %>
+        </div>
+        
+        <div class="text-sm text-gray-500 mt-1">
+          <%= l transaction.created_at, format: :long %>
+        </div>
+      </div>
+
+      <div>
+        <% if transaction.can_cancel? %>
+          <%= button_to "Cancel",
+                       cancel_transaction_path(transaction),
+                       method: :patch,
+                       class: "text-red-600 hover:text-red-800 text-sm",
+                       data: { turbo_confirm: "Are you sure?" } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+

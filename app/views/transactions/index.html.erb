@@ -1,0 +1,27 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold">Transactions</h1>
+    <%= link_to "New Transfer", 
+                new_transaction_path,
+                class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600",
+                data: { turbo_frame: "new_transaction" } %>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+    <% current_user.accounts.each do |account| %>
+      <%= turbo_frame_tag "balance_#{account.currency}" do %>
+        <%= render 'balance', account: account %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= turbo_frame_tag "new_transaction" %>
+
+  <%= turbo_frame_tag "transactions" do %>
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+      <div class="divide-y divide-gray-200">
+        <%= render @transactions %>
+      </div>
+    </div>
+  <% end %>
+</div>

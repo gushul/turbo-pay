@@ -1,0 +1,6 @@
+scheduler:
+  schedule:
+    process_scheduled_transactions:
+      cron: '*/5 * * * *' 
+      class: ProcessScheduledTransactionsJob
+      queue: default

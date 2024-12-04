@@ -1,0 +1,213 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-factory_bot
+
+AllCops:
+  Exclude:
+    - db/**/*
+    - config/**/*
+    - script/**/*
+    - vendor/**/*
+    - lib/imports/*
+    - 'bin/{bundle,rails,rake}'
+  TargetRubyVersion: 3.2.2
+  NewCops: enable
+Bundler/OrderedGems:
+  Enabled: false
+Gemspec/DeprecatedAttributeAssignment:
+  Enabled: true
+Layout/EmptyLinesAroundExceptionHandlingKeywords:
+  Enabled: false
+Layout/FirstHashElementIndentation:
+  Enabled: false
+Layout/LineLength:
+  Max: 120
+Layout/ParameterAlignment:
+  Enabled: false
+Layout/SpaceBeforeBrackets:
+  Enabled: true
+Layout/SpaceInLambdaLiteral:
+  Enabled: false
+Lint/AmbiguousAssignment:
+  Enabled: true
+Lint/DeprecatedConstants:
+  Enabled: true
+Lint/DuplicateBranch:
+  Enabled: true
+Lint/DuplicateRegexpCharacterClassElement:
+  Enabled: true
+Lint/EmptyBlock:
+  Enabled: true
+Lint/EmptyClass:
+  Enabled: false
+Lint/LambdaWithoutLiteralBlock:
+  Enabled: true
+Lint/NoReturnInBeginEndBlocks:
+  Enabled: true
+Lint/NumberedParameterAssignment:
+  Enabled: true
+Lint/OrAssignmentToConstant:
+  Enabled: true
+Lint/RedundantDirGlobSort:
+  Enabled: true
+Lint/RescueException:
+  Enabled: true
+Lint/SymbolConversion:
+  Enabled: true
+Lint/ToEnumArguments:
+  Enabled: true
+Lint/TripleQuotes:
+  Enabled: true
+Lint/UnexpectedBlockArity:
+  Enabled: true
+Lint/UnmodifiedReduceAccumulator:
+  Enabled: true
+Metrics/MethodLength:
+  Max: 15
+Metrics/BlockLength:
+  Exclude:
+    - app/admin/*
+    - spec/swagger_helper.rb # Swagger configuration requires large block
+    - spec/**/* # RSpec tests require large blocks
+    - lib/tasks/auto_annotate_models.rake # Rake task used to configure annotate models
+Naming/RescuedExceptionsVariableName:
+  Enabled: false
+Naming/VariableNumber:
+  Enabled: true
+  EnforcedStyle: snake_case
+  Exclude:
+    - 'app/serializers/**/*'
+    - 'spec/serializers/**/*'
+    - 'spec/swagger_helper.rb'
+Naming/PredicateName:
+  Exclude:
+    - app/policies/**/* # Because it is incorrect to use routes with ? at the end
+    - app/controllers/**/* # Because it is incorrect to use routes with ? at the end
+Performance/AncestorsInclude:
+  Enabled: false
+Performance/BigDecimalWithNumericArgument:
+  Enabled: true
+Performance/BlockGivenWithExplicitBlock:
+  Enabled: true
+Performance/CollectionLiteralInLoop:
+  Enabled: true
+Performance/ConstantRegexp:
+  Enabled: true
+Performance/MethodObjectAsBlock:
+  Enabled: true
+Performance/RedundantEqualityComparisonBlock:
+  Enabled: true
+Performance/RedundantSortBlock:
+  Enabled: true
+Performance/RedundantSplitRegexpArgument:
+  Enabled: true
+Performance/RedundantStringChars:
+  Enabled: true
+Performance/ReverseFirst:
+  Enabled: true
+Performance/SortReverse:
+  Enabled: true
+Performance/Squeeze:
+  Enabled: true
+Performance/StringInclude:
+  Enabled: true
+Performance/Sum:
+  Enabled: true
+Rails/ActiveRecordCallbacksOrder:
+  Enabled: true
+Rails/AfterCommitOverride:
+  Enabled: true
+Rails/AttributeDefaultBlockValue:
+  Enabled: true
+Rails/FindById:
+  Enabled: true
+Rails/Inquiry:
+  Enabled: true
+Rails/MailerName:
+  Enabled: true
+Rails/MatchRoute:
+  Enabled: true
+Rails/NegateInclude:
+  Enabled: true
+Rails/Pluck:
+  Enabled: true
+Rails/PluckInWhere:
+  Enabled: true
+Rails/RenderInline:
+  Enabled: true
+Rails/RenderPlainText:
+  Enabled: true
+Rails/ShortI18n:
+  Enabled: true
+Rails/SquishedSQLHeredocs:
+  Enabled: true
+Rails/WhereEquals:
+  Enabled: true
+Rails/WhereExists:
+  Enabled: true
+Rails/WhereNot:
+  Enabled: true
+RSpec/MultipleMemoizedHelpers:
+  Max: 6
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/NestedGroups:
+  Max: 4
+RSpec/DescribeClass:
+  Enabled: false
+Style/ArgumentsForwarding:
+  Enabled: true
+Style/StringChars:
+  Enabled: true
+Style/CollectionCompact:
+  Enabled: true
+Style/Documentation:
+  Enabled: false
+Style/DocumentDynamicEvalDefinition:
+  Enabled: true
+Style/EmptyElse:
+  EnforcedStyle: empty
+Style/EmptyMethod:
+  Enabled: false
+Style/EndlessMethod:
+  Enabled: true
+  EnforcedStyle: allow_single_line
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/HashConversion:
+  Enabled: true
+Style/HashExcept:
+  Enabled: true
+Style/IfWithBooleanLiteralBranches:
+  Enabled: true
+Style/Lambda:
+  Enabled: false
+Style/NegatedIfElseCondition:
+  Enabled: true
+Style/NilLambda:
+  Enabled: true
+Style/NumericLiteralPrefix:
+  Enabled: false
+Style/ParallelAssignment:
+  Enabled: false
+Style/RedundantArgument:
+  Enabled: false
+Style/RescueStandardError:
+  Enabled: false
+Style/StringLiterals:
+  Enabled: false
+Style/SwapValues:
+  Enabled: true
+Style/SymbolArray:
+  Exclude:
+    - 'Gemfile'
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never
